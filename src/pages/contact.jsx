@@ -30,7 +30,7 @@ function Contact() {
     e.preventDefault();
     const { name, email, phone, event, message } = formData;
     const text = `New Event Enquiry\n\n Name: ${name}\n Email: ${email}\n Phone: ${phone}\n Event Type: ${event}\nMessage: ${message}`;
-    const whatsappNumber = "919361545557";
+    const whatsappNumber = "919629235137";
     const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`;
     window.open(whatsappURL, "_blank");
   };

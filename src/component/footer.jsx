@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
-import { Instagram, Twitter, Mail, ArrowUpRight, ArrowUp, Zap, ArrowRight } from "lucide-react";
+import { Instagram, Twitter, Mail, ArrowUp, Zap, ArrowRight } from "lucide-react";
 import "./footer.css";
 
 function Footer() {
@@ -10,32 +10,31 @@ function Footer() {
     offset: ["start end", "end end"]
   });
 
-  // Skew effect based on scroll speed
+  // Skew and X translation for the marquee
   const skewX = useTransform(scrollYProgress, [0, 1], [0, -10]);
   const xTranslate = useTransform(scrollYProgress, [0, 1], [100, -800]);
   const smoothX = useSpring(xTranslate, { stiffness: 60, damping: 20 });
 
   const currentYear = new Date().getFullYear();
 
-  // Animation Variants
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.15, delayChildren: 0.3 }
+      transition: { staggerChildren: 0.1, delayChildren: 0.1 }
     }
   };
 
   const itemVariants = {
-    hidden: { y: 30, opacity: 0 },
-    visible: { y: 0, opacity: 1, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }
+    hidden: { y: 20, opacity: 0 },
+    visible: { y: 0, opacity: 1, transition: { duration: 0.6, ease: "easeOut" } }
   };
 
   return (
     <footer ref={container} className="footer-v3">
       <div className="noise-overlay" />
       
-      {/* 1. KINETIC RUNNING TEXT WITH SKEW */}
+      {/* KINETIC MARQUEE */}
       <div className="marquee-wrapper">
         <motion.div style={{ x: smoothX, skewX }} className="marquee-inner">
           <h2 className="outline-text">
@@ -49,26 +48,24 @@ function Footer() {
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true }}
+        viewport={{ once: true, amount: 0.1 }}
       >
         <div className="footer-main-grid">
           
-          {/* BRANDING: TEXT REVEAL ANIMATION */}
+          {/* BRANDING */}
           <motion.div className="brand-col" variants={itemVariants}>
-            <div className="reveal-mask">
-              <motion.div className="brand-header">
-                <Zap size={24} className="accent-icon" />
-                <span className="studio-tag">EST. 2024</span>
-              </motion.div>
-              <h3 className="huge-footer-logo">RC<span>/</span>PHOTOGRAPHY</h3>
+            <div className="brand-header">
+              <Zap size={20} className="accent-icon" />
+              <span className="studio-tag">EST. 2024</span>
             </div>
+            <h3 className="huge-footer-logo">RC<span>/</span>PHOTOGRAPHY</h3>
             <p className="minimal-bio">
               We specialize in cinematic storytelling and archival wedding photography. 
               Currently accepting global commissions.
             </p>
           </motion.div>
 
-          {/* NAV: BOLD LINKS WITH STRIKE-THRU HOVER */}
+          {/* NAV DIRECTORY */}
           <motion.div className="nav-col" variants={itemVariants}>
             <span className="label">DIRECTORY</span>
             <div className="nav-links">
@@ -86,7 +83,7 @@ function Footer() {
             </div>
           </motion.div>
 
-          {/* CTA: GLASS CARD WITH FLOATING ELEMENTS */}
+          {/* CTA CARD */}
           <motion.div className="cta-col" variants={itemVariants}>
             <div className="floating-card">
               <div className="card-top">
@@ -103,13 +100,12 @@ function Footer() {
               </motion.button>
             </div>
           </motion.div>
-
         </div>
 
-        {/* BOTTOM BAR: SYMMETRY DESIGN */}
+        {/* BOTTOM BAR */}
         <div className="footer-bottom-v3">
           <div className="left-meta">
-            <span>©{currentYear} RC</span>
+            <span>©{currentYear} RC STUDIO</span>
             <div className="separator" />
             <span>TAMIL NADU, IN</span>
           </div>
@@ -120,7 +116,6 @@ function Footer() {
                 key={i} 
                 href="#" 
                 whileHover={{ y: -5, color: "#6366f1" }}
-                transition={{ type: "spring", stiffness: 400 }}
               >
                 <Icon size={20} />
               </motion.a>
@@ -130,7 +125,7 @@ function Footer() {
           <motion.button 
             className="scroll-top-pill"
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            whileHover={{ y: -5, backgroundColor: "#fff", color: "#000" }}
+            whileHover={{ backgroundColor: "#fff", color: "#000" }}
           >
             UP <ArrowUp size={14} />
           </motion.button>
