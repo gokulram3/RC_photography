@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Expand, ArrowUpRight, Instagram, Camera } from "lucide-react";
-import "./Gallery.css";
+import "./gallery.css";
 
 const images = [
   // Row 1: Wide (4) + Standard (2) = 6
