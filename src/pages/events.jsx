@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Camera, ArrowRight, Zap, Sparkles, Heart, Users, Briefcase, GraduationCap } from "lucide-react";
-import "./Events.css";
+import "./events.css";
 
 function Events() {
   const events = [
